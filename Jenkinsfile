@@ -20,12 +20,16 @@ pipeline {
             }
         }
 
-        stage('Run Unit Tests') {
-            steps {
-            bat 'call venv\\Scripts\\activate'
-            bat 'set PYTHONPATH=%cd% && pytest tests'
-        }
+       stage('Run Unit Tests') {
+    steps {
+        bat '''
+        call %VENV%\\Scripts\\activate
+        set PYTHONPATH=%cd%
+        python -m pytest tests
+        '''
     }
+}
+
 
 
         stage('Build Application') {
