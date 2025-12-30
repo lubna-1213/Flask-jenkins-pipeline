@@ -9,16 +9,17 @@ pipeline {
 
     stages {
 
-        stage('Install Dependencies') {
-            steps {
-                bat '''
-                python -m venv %VENV%
-                call %VENV%\\Scripts\\activate
-                python -m pip install --upgrade pip
-                pip install -r requirements.txt
-                '''
-            }
-        }
+      stage('Install Dependencies') {
+    steps {
+        bat '''
+        python -m venv %VENV%
+        call %VENV%\\Scripts\\activate
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest
+        '''
+    }
+}
 
        stage('Run Unit Tests') {
     steps {
